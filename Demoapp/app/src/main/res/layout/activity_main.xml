@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="119dp"
+        android:layout_height="27dp"
+        android:background="@android:color/holo_red_light"
+        android:paddingLeft="17dp"
+        android:paddingTop="5dp"
+        android:text="Hello World"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textColorHighlight="@android:color/holo_green_light"
+        android:textColorHint="@android:color/holo_green_light"
+        app:fontFamily="@font/aclonica"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="307dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clickFunction"
+        android:text="Click Me"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="405dp" />
+</android.support.constraint.ConstraintLayout>
