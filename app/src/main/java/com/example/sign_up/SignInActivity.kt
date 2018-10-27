@@ -19,9 +19,23 @@ class SignInActivity : AppCompatActivity() {
 
             if(logEmail.text.toString().isEmpty() || logPassword.text.toString().isEmpty())
                 Toast.makeText(applicationContext,"Please fill all the fields",Toast.LENGTH_LONG).show()
-            else if (!(logEmail.text.toString() != null && android.util.Patterns.EMAIL_ADDRESS.matcher(logEmail.text.toString()).matches()))
+            else if (!(logEmail.text.toString() != null && android.util.Patterns.EMAIL_ADDRESS.matcher
+                    (logEmail.text.toString()).matches()))
                 Toast.makeText(applicationContext,"Invalid E-mail, Please Check",Toast.LENGTH_LONG).show()
-            else Toast.makeText(applicationContext,"You've signed in successfully",Toast.LENGTH_LONG).show()
+            else {
+                if (logEmail.text.toString() !in emailList)
+                    Toast.makeText(applicationContext, "check your Email, it seems you aren't registered", Toast.LENGTH_LONG).show()
+                else if(logPassword.text.toString().equals(passwordList[emailList.indexOf(logEmail.text.toString())]))
+                    Toast.makeText(applicationContext, "You've signed in successfully", Toast.LENGTH_LONG).show()
+                else Toast.makeText(applicationContext, "password is incorrect", Toast.LENGTH_LONG).show()
+
+
+
+
+
+
+
+            }
         }
         notSignedUp.setOnClickListener{
             val intent = Intent(this,signup_activity::class.java)

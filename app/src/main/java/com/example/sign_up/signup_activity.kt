@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_register.*
-
+val userList = arrayListOf("admin")
+val emailList = arrayListOf("admin@ls.com")
+val passwordList = arrayListOf("admin")
 class signup_activity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +27,12 @@ class signup_activity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Invalid E-mail, Please Check",Toast.LENGTH_LONG).show()
             else if (!(regPassword.text.toString()?.equals(regCheckPassword.text.toString())))
                 Toast.makeText(applicationContext,"Passwords doesn't match, Please Double-check",Toast.LENGTH_LONG).show()
-            else Toast.makeText(applicationContext,"You've signed up successfully",Toast.LENGTH_LONG).show()
-
+            else {
+                userList.add(regUsername.text.toString())
+                emailList.add(regEmail.text.toString())
+                passwordList.add(regPassword.text.toString())
+                Toast.makeText(applicationContext, "You've signed up successfully", Toast.LENGTH_LONG).show()
+            }
 
 
 
