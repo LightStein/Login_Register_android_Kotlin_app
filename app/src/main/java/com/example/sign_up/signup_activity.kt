@@ -8,6 +8,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_register.*
 val userList = arrayListOf("admin")
 val emailList = arrayListOf("admin@ls.com")
+val accounts = hashMapOf("admin" to "admin@ls.com")
 val passwordList = arrayListOf("admin")
 class signup_activity : AppCompatActivity() {
 
@@ -23,11 +24,15 @@ class signup_activity : AppCompatActivity() {
             if(regUsername.text.toString().isEmpty() || regEmail.text.toString().isEmpty() ||
                     regPassword.text.toString().isEmpty() || regCheckPassword.text.toString().isEmpty())
                 Toast.makeText(applicationContext,"Please fill all the fields", Toast.LENGTH_LONG).show()
+
             else if (!(regEmail.text.toString() != null && android.util.Patterns.EMAIL_ADDRESS.matcher(regEmail.text.toString()).matches()))
                 Toast.makeText(applicationContext,"Invalid E-mail, Please Check",Toast.LENGTH_LONG).show()
+
             else if (!(regPassword.text.toString()?.equals(regCheckPassword.text.toString())))
                 Toast.makeText(applicationContext,"Passwords doesn't match, Please Double-check",Toast.LENGTH_LONG).show()
+
             else {
+                accounts.put(regPassword.text.toString(),regEmail.text.toString())
                 userList.add(regUsername.text.toString())
                 emailList.add(regEmail.text.toString())
                 passwordList.add(regPassword.text.toString())

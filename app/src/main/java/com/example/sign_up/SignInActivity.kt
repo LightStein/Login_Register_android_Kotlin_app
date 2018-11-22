@@ -8,7 +8,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_register.*
 
 import kotlinx.android.synthetic.main.activity_sign_in.*
-
+var logUser: String = ""
 class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +25,16 @@ class SignInActivity : AppCompatActivity() {
             else {
                 if (logEmail.text.toString() !in emailList)
                     Toast.makeText(applicationContext, "check your Email, it seems you aren't registered", Toast.LENGTH_LONG).show()
-                else if(logPassword.text.toString().equals(passwordList[emailList.indexOf(logEmail.text.toString())]))
+
+                else if(logPassword.text.toString().equals(passwordList[emailList.indexOf(logEmail.text.toString())])) {
                     Toast.makeText(applicationContext, "You've signed in successfully", Toast.LENGTH_LONG).show()
+                   // println("#######################"+ emailList.indexOf(logEmail.toString()) + "##########################")
+                    //logUser = userList[emailList.indexOf(logEmail.toString())]
+                    /////////////////////////////////////////////////////////////
+                    val intent = Intent(this, profile::class.java)
+                    startActivity(intent)
+                }
                 else Toast.makeText(applicationContext, "password is incorrect", Toast.LENGTH_LONG).show()
-
-
-
-
-
-
 
             }
         }
