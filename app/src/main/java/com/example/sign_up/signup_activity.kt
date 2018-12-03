@@ -3,7 +3,9 @@ package com.example.sign_up
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 import kotlinx.android.synthetic.main.activity_register.*
 val userList = arrayListOf("admin")
@@ -11,12 +13,15 @@ val emailList = arrayListOf("admin@ls.com")
 val accounts = hashMapOf("admin" to "admin@ls.com")
 val passwordList = arrayListOf("admin")
 class signup_activity : AppCompatActivity() {
-
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
 
         signupButton.setOnClickListener {
@@ -25,23 +30,24 @@ class signup_activity : AppCompatActivity() {
                     regPassword.text.toString().isEmpty() || regCheckPassword.text.toString().isEmpty())
                 Toast.makeText(applicationContext,"Please fill all the fields", Toast.LENGTH_LONG).show()
 
-            else if (!(regEmail.text.toString() != null && android.util.Patterns.EMAIL_ADDRESS.matcher(regEmail.text.toString()).matches()))
-                Toast.makeText(applicationContext,"Invalid E-mail, Please Check",Toast.LENGTH_LONG).show()
-
             else if (!(regPassword.text.toString()?.equals(regCheckPassword.text.toString())))
                 Toast.makeText(applicationContext,"Passwords doesn't match, Please Double-check",Toast.LENGTH_LONG).show()
 
-            else {
-                accounts.put(regPassword.text.toString(),regEmail.text.toString())
-                userList.add(regUsername.text.toString())
-                emailList.add(regEmail.text.toString())
-                passwordList.add(regPassword.text.toString())
-                Toast.makeText(applicationContext, "You've signed up successfully", Toast.LENGTH_LONG).show()
-            }
+            auth.createUserWithEmailAndPassword(regEmail.text.toString(), regPassword.text.toString())
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("Email", "createUserWithEmail:success")
+                            val user = auth.currentUser
+                            Toast.makeText(this,"you have signed up successfully",Toast.LENGTH_SHORT).show()
 
-
-
-
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("Fail", "createUserWithEmail:failure", task.exception)
+                            Toast.makeText(baseContext, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show()
+                        }
+                    }
         }
     }
 
