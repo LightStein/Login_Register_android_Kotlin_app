@@ -7,7 +7,7 @@
     tools:context=".profile">
 
     <ImageView
-        android:src="@mipmap/pic_profile"
+
         android:id="@+id/picProfile"
         android:layout_width="157dp"
         android:layout_height="154dp"
@@ -17,6 +17,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
     />
 
     <TextView

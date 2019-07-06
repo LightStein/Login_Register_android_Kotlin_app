@@ -2,15 +2,11 @@ package com.example.sign_up
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_register.*
-
 import kotlinx.android.synthetic.main.activity_sign_in.*
-var logUser: String = ""
 class SignInActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
@@ -43,18 +39,12 @@ class SignInActivity : AppCompatActivity() {
                                 Toast.makeText(baseContext, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show()
                             }
-
-                            // ...
                         }
             }
-            }
-
+        }
         notSignedUp.setOnClickListener{
             val intent = Intent(this,signup_activity::class.java)
             startActivity(intent)
         }
-
-
     }
-
 }
